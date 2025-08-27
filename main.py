@@ -1,7 +1,5 @@
 from io import StringIO
 import logging
-import logging.handlers
-import os
 import requests
 import pandas as pd
 
@@ -29,7 +27,6 @@ dataSource = {
 try:
     response = requests.get(dataSource["url"])
     response.raise_for_status()
-    # Read the CSV data into a Pandas DataFrame
     csv_data = StringIO(response.text)
     rawDataframe = pd.read_csv(csv_data)
     logger.info(f"Fetched {len(rawDataframe)} records from {dataSource['url']}")
